@@ -1,7 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const morgan = require("morgan");
-const colors = require("colors");
+const morgan = require("morgan"); // handle log every hit endpoint for development
+const colors = require("colors"); // customize colorization for console.log
 const errorHandler = require("./middleware/error");
 // const logger = require("./middleware/logger");
 
