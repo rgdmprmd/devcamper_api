@@ -16,6 +16,7 @@ connectDB();
 
 // Routes
 const bootcamps = require("./routes/bootcamps");
+const courses = require("./routes/courses");
 
 const app = express();
 // Bodyparser
@@ -26,6 +27,7 @@ if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
 // Mount routers to specific URL
 app.use("/api/v1/bootcamps", bootcamps);
+app.use("/api/v1/courses", courses);
 
 // Middleware for error handler
 app.use(errorHandler);
