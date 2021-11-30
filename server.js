@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const morgan = require("morgan"); // handle log every hit endpoint for development
 const colors = require("colors"); // customize colorization for console.log
 const fileupload = require("express-fileupload"); // file upload
+const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
 // const logger = require("./middleware/logger");
 
@@ -22,8 +23,12 @@ const courses = require("./routes/courses");
 const auth = require("./routes/auth");
 
 const app = express();
+
 // Bodyparser
 app.use(express.json());
+
+// Cookie parser
+app.use(cookieParser());
 
 // Dev logging Middleware
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
