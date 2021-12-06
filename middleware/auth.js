@@ -8,10 +8,11 @@ exports.protect = asyncHandler(async (req, res, next) => {
 	let token;
 
 	if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+		// Cari token di headers.authorization jika ada
 		token = req.headers.authorization.split(" ")[1];
 	}
-
 	// else if (req.cookies.token) {
+	// 	// Cari token di cookies.token jika ada
 	// 	token = req.cookies.token;
 	// }
 

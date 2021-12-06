@@ -24,10 +24,13 @@ const reviews = JSON.parse(fs.readFileSync(`${__dirname}/_data/reviews.json`, "u
 // Import json into db
 const importData = async () => {
 	try {
-		await Bootcamp.create(bootcamps);
-		await Course.create(courses);
 		await User.create(users);
-		await Review.create(reviews);
+		let bc = await Bootcamp.create(bootcamps);
+
+		if (bc) {
+			await Course.create(courses);
+			await Review.create(reviews);
+		}
 
 		console.log(`Data imported`.green.inverse);
 		process.exit();
