@@ -5,6 +5,9 @@ const morgan = require("morgan"); // handle log every hit endpoint for developme
 const colors = require("colors"); // customize colorization for console.log
 const fileupload = require("express-fileupload"); // file upload
 const cookieParser = require("cookie-parser");
+const mongoSanitize = require("express-mongo-sanitize");
+const helmet = require("helmet");
+const xss = require("xss-clean");
 const errorHandler = require("./middleware/error");
 // const logger = require("./middleware/logger");
 
@@ -37,6 +40,15 @@ if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
 // File uploading
 app.use(fileupload());
+
+// Sanitize data
+app.use(mongoSanitize());
+
+// Set security headers
+app.use(helmet());
+
+// Prevent XSS attacks
+app.use(xss());
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
